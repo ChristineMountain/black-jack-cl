@@ -32,13 +32,52 @@ public class Jack
         while(game.equals("on"))
         {
             // do doer first then the rest is seeing if you surivive. 
+            boolean dealerGame;
+            Player dealer = new Player("dealer");
+            dealer.drawCard(deck);
+            dealer.drawCard(deck);
+            dealer.printHand();
+            if(dealer.printHand() > 21)
+            {
+                dealerGame = false;
+            }
+            while (dealer.printHand() < 16)
+            {
+                dealer.drawCard(deck);
+                dealer.printHand();
+            }
+
             for(Player player: players)
             {
+                String turn = "going";
+                System.out.println("How much do you want to bet?");
+                int betAmount = scan.nextInt();
                 player.drawCard(deck);
                 player.drawCard(deck);
                 player.printHand();
-                player. 
-
+                while(turn.equals("going"))
+                {
+                    if(player.printHand() > 21)
+                    {
+                        player.bet(false, betAmount);
+                    }
+                    if(player.printHand() == 21)
+                    {
+                        player.bet(true, betAmount);
+                    }
+                    else
+                    {
+                        player.hit(deck);
+                        player.printHand();
+                        System.out.print("Are you done?")
+                        int done;
+                        done = scan.nextLine();
+                        if (done.equals("done"))
+                        {
+                            turn = "done";
+                        }
+                    }
+            }
             }
             
 

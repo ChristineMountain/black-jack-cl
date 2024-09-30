@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.management.NotificationBroadcaster;
+
 
 public class Player
 {
@@ -24,7 +24,7 @@ public class Player
 
     // i print hand and check values to see if immidiatly won or lost
 
-    public boolean printHand()
+    public int printHand()
     {
         int allValue = 0;
         for(Card card : this.hand)
@@ -33,21 +33,12 @@ public class Player
             allValue += card.value;
         }
         System.out.println("This is your current value: " + allValue);
-        if(allValue > 21)
-        {
-            return false;
-        }
-        if(allValue == 21)
-        {
-            return true; 
-        }
+        return allValue;
     
     }
 
-    public void bet(boolean win)
+    public void bet(boolean win, int betAmount)
     {
-        System.out.println("How much do you want to bet?");
-        int betAmount = scan.nextInt();
         scan.nextLine();
         if (win)
         {
