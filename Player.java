@@ -53,17 +53,28 @@ public class Player
 
     }
 
-    public void hit(Deck deck)
+    public boolean hit(Deck deck)
     {
-        System.out.println("Do you want to be hit? type hit or no");
+        System.out.println("Do you want to be hit? type hit or stay");
         String hitOrNot = scan.nextLine();
         if (hitOrNot.equals("hit"))
         {
             hand.add(deck.drawTopCard());
 
         }
-        
+        else
+        {
+            return true;
+        }
+        return false;
 
+    }
+
+    public int betAmount()
+    {
+        System.out.println("How much do you want to bet?");
+        int betAmount = scan.nextInt();
+        return betAmount;
     }
 
 }

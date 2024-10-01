@@ -9,6 +9,7 @@ public class Jack
         Scanner scan = new Scanner(System.in);
         Deck deck = new Deck();
         ArrayList<Player> players = new ArrayList<Player>();
+        ArrayList<Object> scores = new ArrayList<Object>();
 
         // variables because those ~~~~~~ KEEP SHOWING UP
         int amountPlayers;
@@ -31,27 +32,12 @@ public class Jack
 
         while(game.equals("on"))
         {
-            // do doer first then the rest is seeing if you surivive. 
-            boolean dealerGame;
-            Player dealer = new Player("dealer");
-            dealer.drawCard(deck);
-            dealer.drawCard(deck);
-            dealer.printHand();
-            if(dealer.printHand() > 21)
-            {
-                dealerGame = false;
-            }
-            while (dealer.printHand() < 16)
-            {
-                dealer.drawCard(deck);
-                dealer.printHand();
-            }
 
             for(Player player: players)
             {
+                System.out.print("This is " + player.name + "'s turn");
                 String turn = "going";
-                System.out.println("How much do you want to bet?");
-                int betAmount = scan.nextInt();
+                player.betAmount();
                 player.drawCard(deck);
                 player.drawCard(deck);
                 player.printHand();
@@ -59,50 +45,72 @@ public class Jack
                 {
                     if(player.printHand() > 21)
                     {
-                        player.bet(false, betAmount);
+                        System.out.print("You busted. " + player.printHand());
+                        scores.add(player.printHand());
                     }
                     if(player.printHand() == 21)
                     {
-                        player.bet(true, betAmount);
+                        System.out.print("BLACKJACK" + player.printHand());
+                        scores.add(player.printHand());
                     }
                     else
                     {
                         player.hit(deck);
                         player.printHand();
-                        System.out.print("Are you done?")
-                        int done;
-                        done = scan.nextLine();
-                        if (done.equals("done"))
+                        if(player.hit(deck))
                         {
-                            turn = "done";
+                            System.out.print("You are staying at this value: " + player.printHand());
+                            scores.add(player.printHand());
+
                         }
+                       
                     }
+                   
             }
             }
-            
+            Player dealer = new Player("dealer");
+            boolean dealerLostGame = false;
+            dealer.drawCard(deck);
+            dealer.drawCard(deck);
+            dealer.printHand();
+            while (dealer.printHand() < 16)
+            {
+                dealer.drawCard(deck);
+                dealer.printHand();
+            }
+            if(dealer.printHand() > 21)
+            {
+                dealerLostGame = true;
+
+            }
+
+            // write program for winning a round.
+            for(Player player : players)
+            {
+                if(player.printHand() > 21)
+                {
+                    player.bet(false, player.betAmount());
+                }
+                if (dealerLostGame)
+                {
+                    player.bet(true, player.betAmount());
+                }
+                if (player.printHand() == 21)
+                {
+                    player.bet(true, player.betAmount());
+                }
+                if(player.printHand() > dealer.printHand())
+                {
+                    player.bet(true, player.betAmount());
+                }
+
+                }
+        
+            }
 
         }
 
-
-        // testing
-        for(Card card: deck.cards)
-        {
-            System.out.println(card.face + " " +  card.value + " " +  card.suit);
-        }
-        deck.shuffle();
-        System.out.println("SHUFFLED DECK");
-        for(Card card: deck.cards)
-        {
-            System.out.println(card.face + " " +  card.value + " " +  card.suit);
-        }
-
-        Card top = deck.drawTopCard();
-        System.out.println("FIRST CARD");
-
-        System.out.println(top.face + " " + top.value + " " + top.suit);
 
 
     }
    
-
-}
