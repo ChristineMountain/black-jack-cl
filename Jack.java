@@ -20,6 +20,7 @@ public class Jack
         // starting the game
         System.out.println("Hello! You are playing BlackJack! How many Players are playing?");
         amountPlayers = scan.nextInt();
+        scan.nextLine();
         for(int i = 0; i < amountPlayers; i++)
         {
             System.out.println("What is player " + (i + 1 )+ "'s name? ");
@@ -44,28 +45,29 @@ public class Jack
                 player.printHand();
                 while(turn.equals("going"))
                 {
-                    if(player.printHand() > 21)
+                    if(player.getValue() > 21)
                     {
-                        System.out.print("You busted. " + player.printHand());
-                        scores.add(player.printHand());
+                        System.out.print("You busted. ");
+                        player.printHand();
+                        scores.add(player.getValue());
                     }
-                    if(player.printHand() == 21)
+                    if(player.getValue() == 21)
                     {
-                        System.out.print("BLACKJACK" + player.printHand());
-                        scores.add(player.printHand());
+                        System.out.print("BLACKJACK");
+                        player.printHand();
+                        scores.add(player.getValue());
                     }
                     else
                     {
                         player.hit(deck);
-                        player.printHand();
                         if(player.hit(deck))
-                        {   
+                        {   player.printHand();
                             player.hit(deck);
                         }
                         else
                         {
-                            System.out.print("You are staying at this value: " + player.printHand());
-                            scores.add(player.printHand());
+                            System.out.print("You are staying at this value: " + player.getValue());
+                            scores.add(player.getValue());
                         }
                        
                     }
@@ -77,12 +79,12 @@ public class Jack
             dealer.drawCard(deck);
             dealer.drawCard(deck);
             dealer.printHand();
-            while (dealer.printHand() < 16)
+            while (dealer.getValue() < 16)
             {
                 dealer.drawCard(deck);
                 dealer.printHand();
             }
-            if(dealer.printHand() > 21)
+            if(dealer.getValue() > 21)
             {
                 dealerLostGame = true;
 
@@ -91,7 +93,7 @@ public class Jack
             // write program for winning a round.
             for(Player player : players)
             {
-                if(player.printHand() > 21)
+                if(player.getValue() > 21)
                 {
                     player.bet(false, player.betAmount());
                 }
@@ -99,11 +101,11 @@ public class Jack
                 {
                     player.bet(true, player.betAmount());
                 }
-                if (player.printHand() == 21)
+                if (player.getValue() == 21)
                 {
                     player.bet(true, player.betAmount());
                 }
-                if(player.printHand() > dealer.printHand())
+                if(player.getValue() > dealer.getValue())
                 {
                     player.bet(true, player.betAmount());
                 }

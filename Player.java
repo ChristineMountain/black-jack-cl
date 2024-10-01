@@ -24,7 +24,7 @@ public class Player
 
     // i print hand and check values to see if immidiatly won or lost
 
-    public int printHand()
+    public void printHand()
     {
         int allValue = 0;
         for(Card card : this.hand)
@@ -33,6 +33,15 @@ public class Player
             allValue += card.value;
         }
         System.out.println("This is your current value: " + allValue);
+    
+    }
+    public int getValue()
+    {
+        int allValue = 0;
+        for(Card card : this.hand)
+        {
+            allValue += card.value;
+        }
         return allValue;
     
     }
@@ -60,6 +69,7 @@ public class Player
         if (hitOrNot.equals("hit"))
         {
             hand.add(deck.drawTopCard());
+            
             return true;
 
         }
