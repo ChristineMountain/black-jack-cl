@@ -37,12 +37,18 @@ public class Jack
 
             for(Player player: players)
             {
+<<<<<<< HEAD
                 System.out.print("This is " + player.name + "'s turn");
                 String turn = "going";
+=======
+                System.out.println("This is " + player.name + "'s turn");
+                boolean turn = true;
+>>>>>>> f77f59b (reupdate)
                 player.betAmount();
                 player.drawCard(deck);
                 player.drawCard(deck);
                 player.printHand();
+<<<<<<< HEAD
                 while(turn.equals("going"))
                 {
                     if(player.getValue() > 21)
@@ -74,6 +80,18 @@ public class Jack
                    
             }
             }
+=======
+                // while(turn)
+                // {
+                //     player.hit(deck, turn);
+                //     player.printHand();
+                // }
+                        
+                   
+            
+            }
+            System.out.println("It's the dealer's turn ");
+>>>>>>> f77f59b (reupdate)
             Player dealer = new Player("dealer");
             boolean dealerLostGame = false;
             dealer.drawCard(deck);
@@ -93,20 +111,39 @@ public class Jack
             // write program for winning a round.
             for(Player player : players)
             {
+<<<<<<< HEAD
                 if(player.getValue() > 21)
                 {
+=======
+                System.out.print(player.name + ",");
+                if(player.getValue() > 21)
+                {
+                    System.out.println("You busted.");
+>>>>>>> f77f59b (reupdate)
                     player.bet(false, player.betAmount());
                 }
                 if (dealerLostGame)
                 {
+<<<<<<< HEAD
+=======
+                    System.out.println("Dealer bust! Everyone who didn't bust wins!");
+>>>>>>> f77f59b (reupdate)
                     player.bet(true, player.betAmount());
                 }
                 if (player.getValue() == 21)
                 {
+<<<<<<< HEAD
+=======
+                    System.out.println("Blackjack, you win no matter what. Good job");
+>>>>>>> f77f59b (reupdate)
                     player.bet(true, player.betAmount());
                 }
                 if(player.getValue() > dealer.getValue())
                 {
+<<<<<<< HEAD
+=======
+                    System.out.println("You win!");
+>>>>>>> f77f59b (reupdate)
                     player.bet(true, player.betAmount());
                 }
 

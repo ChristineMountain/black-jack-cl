@@ -62,7 +62,11 @@ public class Player
 
     }
 
+<<<<<<< HEAD
     public boolean hit(Deck deck)
+=======
+    public void hit(Deck deck, boolean game)
+>>>>>>> f77f59b (reupdate)
     {
         System.out.println("Do you want to be hit? type hit or stay");
         String hitOrNot = scan.nextLine();
@@ -75,7 +79,13 @@ public class Player
         }
         else
         {
+<<<<<<< HEAD
             return false;
+=======
+            System.out.println("You are staying.");
+            game = false;
+
+>>>>>>> f77f59b (reupdate)
         }
 
 
