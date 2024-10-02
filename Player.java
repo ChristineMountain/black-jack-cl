@@ -69,19 +69,13 @@ public class Player
         if (hitOrNot.equals("hit"))
         {
             hand.add(deck.drawTopCard());
-            
-            return true;
 
         }
         else
         {
-<<<<<<< HEAD
-            return false;
-=======
             System.out.println("You are staying.");
             game = false;
 
->>>>>>> f77f59b (reupdate)
         }
 
 
