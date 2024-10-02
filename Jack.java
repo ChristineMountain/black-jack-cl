@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Jack
 {
@@ -42,12 +42,11 @@ public class Jack
                 player.betAmount();
                 player.drawCard(deck);
                 player.drawCard(deck);
-                player.printHand();
-                // while(turn)
-                // {
-                //     player.hit(deck, turn);
-                //     player.printHand();
-                // }
+                while(turn)
+                {
+                    player.printHand();
+                    turn = player.hit(deck, turn);
+                }
                         
                    
             
@@ -78,17 +77,17 @@ public class Jack
                     System.out.println("You busted.");
                     player.bet(false, player.betAmount());
                 }
-                if (dealerLostGame)
+                else if (dealerLostGame)
                 {
                     System.out.println("Dealer bust! Everyone who didn't bust wins!");
                     player.bet(true, player.betAmount());
                 }
-                if (player.getValue() == 21)
+                else if (player.getValue() == 21)
                 {
                     System.out.println("Blackjack, you win no matter what. Good job");
                     player.bet(true, player.betAmount());
                 }
-                if(player.getValue() > dealer.getValue())
+                else if(player.getValue() > dealer.getValue())
                 {
                     System.out.println("You win!");
                     player.bet(true, player.betAmount());
