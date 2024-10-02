@@ -8,6 +8,7 @@ public class Player
     public ArrayList<Card> hand = new ArrayList<Card>();
     public String name;
     public int total = 100;
+    public int bet = 0;
 
 
     // player essantials
@@ -46,7 +47,7 @@ public class Player
     
     }
 
-    public void bet(boolean win, int betAmount)
+    public void getBet(boolean win, int betAmount)
     {
         scan.nextLine();
         if (win)
@@ -83,12 +84,12 @@ public class Player
 
     }
 
-    public int betAmount()
+    public void betAmount()
     {
         System.out.println("How much do you want to bet?");
         int betAmount = scan.nextInt();
         scan.nextLine();
-        return betAmount;
+        this.bet = betAmount;
     }
 
 }

@@ -48,7 +48,6 @@ public class Jack
                     turn = player.hit(deck, turn);
                 }
                         
-                   
             
             }
             System.out.println("It's the dealer's turn ");
@@ -75,22 +74,28 @@ public class Jack
                 if(player.getValue() > 21)
                 {
                     System.out.println("You busted.");
-                    player.bet(false, player.betAmount());
+                    player.getBet(false, player.bet);
                 }
                 else if (dealerLostGame)
                 {
                     System.out.println("Dealer bust! Everyone who didn't bust wins!");
-                    player.bet(true, player.betAmount());
+                    player.getBet(true, player.bet);
                 }
                 else if (player.getValue() == 21)
                 {
                     System.out.println("Blackjack, you win no matter what. Good job");
-                    player.bet(true, player.betAmount());
+                    player.getBet(true, player.bet);
                 }
                 else if(player.getValue() > dealer.getValue())
                 {
                     System.out.println("You win!");
-                    player.bet(true, player.betAmount());
+                    player.getBet(true, player.bet);
+                }
+                else
+                {
+                    System.out.println("You lost!");
+                    player.getBet(false, player.bet);
+
                 }
 
                 }
