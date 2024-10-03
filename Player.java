@@ -25,10 +25,9 @@ public class Player
 
 
     // i print hand and check values to see if immidiatly won or lost
-
     public void printHand()
     {
-        int allValue = 0;
+        int allValue = 0; //mr_fowler: do we still need this here?
         for(Card card : this.hand)
         {
             System.out.println(card.face + " " + card.value + " " + card.suit);
@@ -37,6 +36,8 @@ public class Player
         System.out.println("This is your current value: " + allValue);
     
     }
+
+    // returns the value of all the cards
     public int getValue()
     {
         int allValue = 0;
@@ -48,6 +49,8 @@ public class Player
     
     }
 
+    // changes the total on the bet
+    //mr_fowler: do we still need to pass in the bet amount if its an attribute?
     public void getBet(boolean win, int betAmount)
     {
         scan.nextLine();
@@ -63,10 +66,15 @@ public class Player
             this.hand.clear();
             System.out.println(this.name + " total money is now: " + this.total);
 
-        }  
+        }
+        //mr_fowler: works great! In the future, if you're going to do something regardless of an if statement, consider moving it outside!
+        //this.hand.clear();
+        //System.out.println(this.name + " total money is now: " + this.total);
+        //placing it here reduces the if statement scope sizes and makes it more clear it happens regardless win or lose!
 
 
     }
+
 
     public boolean hit(Deck deck, boolean game)
     {
@@ -89,6 +97,7 @@ public class Player
 
     }
 
+    // stores the bet amount
     public void betAmount()
     {
         System.out.println("How much do you want to bet?");

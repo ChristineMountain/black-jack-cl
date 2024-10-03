@@ -44,7 +44,7 @@ public class Jack
                 while(turn)
                 {
                     player.printHand();
-                    turn = player.hit(deck, turn);
+                    turn = player.hit(deck, turn); //mr_fowler: this is clever, nice!
                 }
 
             }
@@ -59,7 +59,7 @@ public class Jack
             while (dealer.getValue() < 16)
             {
                 dealer.drawCard(deck);
-                dealer.printHand();
+                dealer.printHand(); //maybe we wait until after they add all their cards to print their hand, also can we print their value?
             }
             if(dealer.getValue() > 21)
             {
