@@ -7,12 +7,8 @@ public class Jack
     {
         // creating new scan for inputs in the program
         Scanner scan = new Scanner(System.in);
-        Deck deck = new Deck();
-        deck.shuffle();
         ArrayList<Player> players = new ArrayList<Player>();
-        ArrayList<Object> scores = new ArrayList<Object>();
-
-        // variables because those ~~~~~~ KEEP SHOWING UP
+        // variables needed to add new players
         int amountPlayers;
         String name;
 
@@ -32,7 +28,12 @@ public class Jack
 
         while(game)
         {
+            // creates new deck each round so it starts over
+            Deck deck = new Deck();
+            // shuffles the new deck
+            deck.shuffle();
 
+            // player plays
             for(Player player: players)
             {
                 System.out.println("This is " + player.name + "'s turn");
@@ -45,9 +46,10 @@ public class Jack
                     player.printHand();
                     turn = player.hit(deck, turn);
                 }
-                        
-            
+
             }
+
+            // dealer showing play
             System.out.println("It's the dealer's turn ");
             Player dealer = new Player("dealer");
             boolean dealerLostGame = false;
@@ -65,7 +67,7 @@ public class Jack
 
             }
 
-            // write program for winning a round.
+            // determining wins for a round
             for(Player player : players)
             {
                 System.out.print(player.name + ",");
