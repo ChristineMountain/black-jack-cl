@@ -3,9 +3,12 @@ import java.util.Random;
 
 public class Deck
 {
+    // creates list of cards
     public ArrayList<Card> cards = new ArrayList<Card>();
+    // importing random for suffle method
     Random rnd = new Random();
 
+    // essentials for making a deck of cards
     Deck()
     {
         int[] values = new int[]{1,2,3,4,5,6,7,8,9,10,10,10,10};
@@ -26,6 +29,7 @@ public class Deck
 
     }
 
+    // shuffles the deck with random
     public void shuffle()
     {
         ArrayList<Card> shufCards = new ArrayList<Card>();
@@ -42,6 +46,7 @@ public class Deck
 
     }
 
+    // gives top card while removing it from the deck
     public Card drawTopCard()
     {
         Card top;

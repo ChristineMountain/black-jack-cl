@@ -24,7 +24,8 @@ public class Player
     }
 
 
-    // prints out what is in hand and current value
+    // i print hand and check values to see if immidiatly won or lost
+
     public void printHand()
     {
         int allValue = 0;
@@ -36,8 +37,6 @@ public class Player
         System.out.println("This is your current value: " + allValue);
     
     }
-
-    // returns the value
     public int getValue()
     {
         int allValue = 0;
@@ -49,8 +48,7 @@ public class Player
     
     }
 
-    // deals with the product of wins and looses
-    public void totalBet(boolean win, int betAmount)
+    public void getBet(boolean win, int betAmount)
     {
         scan.nextLine();
         if (win)
@@ -70,7 +68,6 @@ public class Player
 
     }
 
-    // adds another card when hit and returns true when stays 
     public boolean hit(Deck deck, boolean game)
     {
 
@@ -92,7 +89,6 @@ public class Player
 
     }
 
-    // stores the bet amount for each player
     public void betAmount()
     {
         System.out.println("How much do you want to bet?");

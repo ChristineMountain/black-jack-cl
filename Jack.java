@@ -7,9 +7,12 @@ public class Jack
     {
         // creating new scan for inputs in the program
         Scanner scan = new Scanner(System.in);
-        // makes list of players
+        Deck deck = new Deck();
+        deck.shuffle();
         ArrayList<Player> players = new ArrayList<Player>();
-        // variables made to make adding players
+        ArrayList<Object> scores = new ArrayList<Object>();
+
+        // variables because those ~~~~~~ KEEP SHOWING UP
         int amountPlayers;
         String name;
 
@@ -25,17 +28,11 @@ public class Jack
             players.add(player);
         }
 
-        // playing game with set amount of players
         boolean game = true;
 
         while(game)
         {
-            // makes deck in while so it clears after every game :)
-            Deck deck = new Deck();
-            // shuffle the new deck
-            deck.shuffle();
 
-            // player getting to play
             for(Player player: players)
             {
                 System.out.println("This is " + player.name + "'s turn");
@@ -48,9 +45,9 @@ public class Jack
                     player.printHand();
                     turn = player.hit(deck, turn);
                 }
+                        
+            
             }
-
-            // dealer showing the process of their play
             System.out.println("It's the dealer's turn ");
             Player dealer = new Player("dealer");
             boolean dealerLostGame = false;
@@ -68,36 +65,43 @@ public class Jack
 
             }
 
-            // determining win and looses
+            // write program for winning a round.
             for(Player player : players)
             {
                 System.out.print(player.name + ",");
                 if(player.getValue() > 21)
                 {
                     System.out.println("You busted.");
-                    player.totalBet(false, player.bet);
+                    player.getBet(false, player.bet);
                 }
                 else if (dealerLostGame)
                 {
                     System.out.println("Dealer bust! Everyone who didn't bust wins!");
-                    player.totalBet(true, player.bet);
+                    player.getBet(true, player.bet);
                 }
                 else if (player.getValue() == 21)
                 {
                     System.out.println("Blackjack, you win no matter what. Good job");
-                    player.totalBet(true, player.bet);
+                    player.getBet(true, player.bet);
                 }
                 else if(player.getValue() > dealer.getValue())
                 {
                     System.out.println("You win!");
-                    player.totalBet(true, player.bet);
+                    player.getBet(true, player.bet);
                 }
                 else
                 {
                     System.out.println("You lost!");
-                    player.totalBet(false, player.bet);
+                    player.getBet(false, player.bet);
+
                 }
+
                 }
+        
             }
+
         }
+
+
+
     }
