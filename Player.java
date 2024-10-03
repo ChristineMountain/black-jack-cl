@@ -8,6 +8,7 @@ public class Player
     public ArrayList<Card> hand = new ArrayList<Card>();
     public String name;
     public int total = 100;
+    public int bet = 0;
 
 
     // player essantials
@@ -16,15 +17,15 @@ public class Player
         this.name = name;
     }
 
+    // adds card to the deck
     public void drawCard(Deck deck)
     {
         hand.add(deck.drawTopCard());
     }
 
 
-    // i print hand and check values to see if immidiatly won or lost
-
-    public int printHand()
+    // prints out what is in hand and current value
+    public void printHand()
     {
         int allValue = 0;
         for(Card card : this.hand)
@@ -33,48 +34,71 @@ public class Player
             allValue += card.value;
         }
         System.out.println("This is your current value: " + allValue);
+    
+    }
+
+    // returns the value
+    public int getValue()
+    {
+        int allValue = 0;
+        for(Card card : this.hand)
+        {
+            allValue += card.value;
+        }
         return allValue;
     
     }
 
-    public void bet(boolean win, int betAmount)
+    // deals with the product of wins and looses
+    public void totalBet(boolean win, int betAmount)
     {
         scan.nextLine();
         if (win)
         {
             this.total += betAmount;
+            this.hand.clear();
+            System.out.println(this.name + " total money is now: " + this.total);
         }
         else
         {
             this.total -= betAmount;
+            this.hand.clear();
+            System.out.println(this.name + " total money is now: " + this.total);
 
         }  
 
 
     }
 
-    public boolean hit(Deck deck)
+    // adds another card when hit and returns true when stays 
+    public boolean hit(Deck deck, boolean game)
     {
+
         System.out.println("Do you want to be hit? type hit or stay");
         String hitOrNot = scan.nextLine();
         if (hitOrNot.equals("hit"))
         {
             hand.add(deck.drawTopCard());
+            return true;
 
         }
         else
         {
-            return true;
+            System.out.println("You are staying.");
+            return false;
+
         }
-        return false;
+
 
     }
 
-    public int betAmount()
+    // stores the bet amount for each player
+    public void betAmount()
     {
         System.out.println("How much do you want to bet?");
         int betAmount = scan.nextInt();
-        return betAmount;
+        scan.nextLine();
+        this.bet = betAmount;
     }
 
 }
